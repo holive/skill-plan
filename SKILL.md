@@ -1,5 +1,5 @@
 ---
-name: plan
+name: skill-plan
 description: Bridge codemap understanding and implementation. Cross-references ticket requirements with code structure to surface ambiguities, side effects, and alternatives before coding begins. Produces actionable implementation plans.
 ---
 
@@ -145,6 +145,18 @@ When multiple valid paths exist, document options:
 ```
 
 Only include alternatives when meaningfully different (don't list trivial variations).
+
+### Agent Delegation
+
+For complex codebases, spawn sub-agents to parallelize work:
+
+| Situation | Action |
+|-----------|--------|
+| Generating codemap on-demand | Use Task tool with subagent_type=Explore |
+| Examining >5 files in step 4 | Spawn Explore agent to gather file contents in parallel |
+| Ticket references multiple unrelated modules | Launch parallel Explore agents per module |
+
+This keeps the main conversation focused on planning while agents handle file gathering.
 
 ### 6. Generate Plan Output
 
